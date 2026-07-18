@@ -326,38 +326,7 @@ async function initPostWeddingAlbum() {
   if (HAS_SCROLLTRIGGER) ScrollTrigger.refresh();
 }
 
-function openBookExperience() {
-  const gate = qs("#bookGate");
-  if (!gate) return;
-  if (!HAS_GSAP) {
-    gate.remove();
-    qs("#mainContent").style.opacity = "1";
-    document.body.style.overflowY = "auto";
-    animateHeroText();
-    return;
-  }
-  const tl = gsap.timeline();
-  tl.to(".book-cover-front", { rotateY: -172, duration: 1.95, ease: "power4.inOut" })
-    .to(".book-shell", { rotateX: 8, y: -16, duration: 1.2, ease: "power3.inOut" }, "<")
-    .to(gate, { opacity: 0, duration: 1.2, ease: "power3.inOut" }, "-=0.55")
-    .to("#mainContent", { opacity: 1, duration: 1.4, ease: "power2.out", onStart: animateHeroText }, "-=0.8")
-    .add(() => {
-      gate.remove();
-      document.body.style.overflowY = "auto";
-    });
-}
-
-function hardUnlockPage() {
-  const gate = qs("#bookGate");
-  const preloader = qs("#preloader");
-  if (gate) gate.remove();
-  if (preloader) preloader.remove();
-  qs("#mainContent").style.opacity = "1";
-  document.body.style.overflowY = "auto";
-}
-
 async function init() {
-  document.body.style.overflowY = "hidden";
   qs(".hero-bg").style.backgroundImage = `url('${GALLERY_IMAGES[0]}')`;
   splitTextAnimation();
   buildGallery(GALLERY_IMAGES, "#masonryGallery");
@@ -367,13 +336,13 @@ async function init() {
   initLuxuryCursor();
   initScrollReveal();
   initPostWeddingAlbum();
+  animateHeroText();
 
   qsa(".lang-btn").forEach((btn) => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
   qs("#startJourney").addEventListener("click", () => {
     document.querySelector("#gallerySection").scrollIntoView({ behavior: "smooth" });
   });
 
-  qs("#openInvitation").addEventListener("click", openBookExperience);
   qs("#closeLightbox").addEventListener("click", closeLightbox);
   qs("#lightbox").addEventListener("click", (event) => {
     if (event.target.id === "lightbox") closeLightbox();
@@ -383,19 +352,6 @@ async function init() {
   });
 
   await preloadImages(GALLERY_IMAGES.slice(0, 2));
-  if (!HAS_GSAP) {
-    qs("#preloader").remove();
-    return;
-  }
-  gsap.to("#preloader", { opacity: 0, duration: 0.8, delay: 0.25, onComplete: () => qs("#preloader").remove() });
 }
 
-init().catch(() => {
-  hardUnlockPage();
-});
-
-setTimeout(() => {
-  if (document.body.style.overflowY === "hidden") {
-    hardUnlockPage();
-  }
-}, 8000);
+init();

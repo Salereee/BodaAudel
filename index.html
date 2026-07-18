@@ -30,37 +30,13 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-ivory text-ink antialiased overflow-x-hidden">
-  <div id="preloader" aria-hidden="true">
-    <div class="preloader-mark">
-      <span>Audel</span>
-      <span class="amp">&</span>
-      <span>Luna</span>
-    </div>
-  </div>
-
   <div id="luxuryCursor" aria-hidden="true"></div>
   <div id="luxuryCursorDot" aria-hidden="true"></div>
-
-  <div id="bookGate" class="fixed inset-0 z-50 flex items-center justify-center px-4">
-    <div class="book-scene">
-      <div class="book-shell">
-        <div class="book-cover-front">
-          <div class="book-cover-content">
-            <p class="tracking-[0.3em] uppercase text-xs text-gold mb-3">Wedding Invitation</p>
-            <h1 class="font-serif text-4xl md:text-5xl leading-none">Audel <span class="text-gold">&</span> Luna</h1>
-            <div class="thin-divider mt-8 mb-6"></div>
-            <button id="openInvitation" class="luxury-button" type="button" data-i18n="openInvitation">Abrir invitación</button>
-          </div>
-        </div>
-        <div class="book-cover-back"></div>
-        <div class="book-page-glow"></div>
-      </div>
-    </div>
-  </div>
+  <div class="brand-watermark" aria-hidden="true">Audel <span>&</span> Luna</div>
 
   <header class="fixed top-0 left-0 right-0 z-40 px-4 md:px-8 py-4 md:py-6 pointer-events-none">
     <div class="max-w-7xl mx-auto flex justify-between items-center pointer-events-auto">
-      <p class="font-serif text-xl md:text-2xl tracking-wide">A <span class="text-gold">&</span> L</p>
+      <p class="header-brand-pill font-serif text-xl md:text-2xl tracking-wide">A <span class="text-gold">&</span> L</p>
       <div class="lang-switch" role="group" aria-label="Language selector">
         <button class="lang-btn active" data-lang="es" type="button">ES</button>
         <button class="lang-btn" data-lang="en" type="button">EN</button>
@@ -68,7 +44,7 @@
     </div>
   </header>
 
-  <main id="mainContent" class="opacity-0">
+  <main id="mainContent">
     <section id="hero" class="relative min-h-screen flex items-center justify-center text-center px-6">
       <div class="hero-bg"></div>
       <div class="hero-overlay"></div>
@@ -81,7 +57,7 @@
         </h1>
         <p class="max-w-xl mx-auto text-base md:text-lg tracking-wide reveal-item" data-i18n="heroPhrase">Dos historias, un mismo destino.</p>
         <p class="mt-6 text-sm uppercase tracking-[0.3em] reveal-item" data-i18n="weddingDate">14 de febrero de 2027</p>
-        <button id="startJourney" class="luxury-button mt-10 reveal-item" type="button" data-i18n="startExperience">Comenzar</button>
+        <button id="startJourney" class="luxury-button hero-glass-button mt-10 reveal-item" type="button" data-i18n="startExperience">Comenzar</button>
       </div>
       <div class="scroll-indicator reveal-item">
         <span></span>
