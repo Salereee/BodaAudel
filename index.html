@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Invitación de boda de Audel y Luna">
+  <title>Audel & Luna | Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: "#F8F5EF",
+            champagne: "#EFE4D2",
+            gold: "#C8A96A",
+            warmgray: "#E9E6E0",
+            ink: "#171412"
+          },
+          boxShadow: {
+            luxury: "0 20px 60px rgba(20, 16, 10, 0.08)"
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-ivory text-ink antialiased overflow-x-hidden">
+  <div id="preloader" aria-hidden="true">
+    <div class="preloader-mark">
+      <span>Audel</span>
+      <span class="amp">&</span>
+      <span>Luna</span>
+    </div>
+  </div>
+
+  <div id="luxuryCursor" aria-hidden="true"></div>
+  <div id="luxuryCursorDot" aria-hidden="true"></div>
+
+  <div id="bookGate" class="fixed inset-0 z-50 flex items-center justify-center px-4">
+    <div class="book-scene">
+      <div class="book-shell">
+        <div class="book-cover-front">
+          <div class="book-cover-content">
+            <p class="tracking-[0.3em] uppercase text-xs text-gold mb-3">Wedding Invitation</p>
+            <h1 class="font-serif text-4xl md:text-5xl leading-none">Audel <span class="text-gold">&</span> Luna</h1>
+            <div class="thin-divider mt-8 mb-6"></div>
+            <button id="openInvitation" class="luxury-button" type="button" data-i18n="openInvitation">Abrir invitación</button>
+          </div>
+        </div>
+        <div class="book-cover-back"></div>
+        <div class="book-page-glow"></div>
+      </div>
+    </div>
+  </div>
+
+  <header class="fixed top-0 left-0 right-0 z-40 px-4 md:px-8 py-4 md:py-6 pointer-events-none">
+    <div class="max-w-7xl mx-auto flex justify-between items-center pointer-events-auto">
+      <p class="font-serif text-xl md:text-2xl tracking-wide">A <span class="text-gold">&</span> L</p>
+      <div class="lang-switch" role="group" aria-label="Language selector">
+        <button class="lang-btn active" data-lang="es" type="button">ES</button>
+        <button class="lang-btn" data-lang="en" type="button">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent" class="opacity-0">
+    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center px-6">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="relative z-10 max-w-3xl mx-auto">
+        <p class="text-gold uppercase tracking-[0.35em] text-xs md:text-sm mb-8 reveal-item" data-i18n="weddingDay">Nuestro gran día</p>
+        <h1 class="font-serif hero-names leading-none mb-5">
+          <span class="split-text block">Audel</span>
+          <span class="block text-gold text-3xl md:text-5xl my-3">&</span>
+          <span class="split-text block">Luna</span>
+        </h1>
+        <p class="max-w-xl mx-auto text-base md:text-lg tracking-wide reveal-item" data-i18n="heroPhrase">Dos historias, un mismo destino.</p>
+        <p class="mt-6 text-sm uppercase tracking-[0.3em] reveal-item" data-i18n="weddingDate">14 de febrero de 2027</p>
+        <button id="startJourney" class="luxury-button mt-10 reveal-item" type="button" data-i18n="startExperience">Comenzar</button>
+      </div>
+      <div class="scroll-indicator reveal-item">
+        <span></span>
+      </div>
+    </section>
+
+    <section class="section-shell">
+      <div class="section-intro reveal-item">
+        <p class="section-kicker" data-i18n="countdownKicker">Cuenta regresiva</p>
+        <h2 class="section-title" data-i18n="countdownTitle">Cada segundo nos acerca</h2>
+      </div>
+      <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
+        <article class="count-card reveal-item">
+          <p id="days" class="count-value">00</p>
+          <p class="count-label" data-i18n="days">Días</p>
+        </article>
+        <article class="count-card reveal-item">
+          <p id="hours" class="count-value">00</p>
+          <p class="count-label" data-i18n="hours">Horas</p>
+        </article>
+        <article class="count-card reveal-item">
+          <p id="minutes" class="count-value">00</p>
+          <p class="count-label" data-i18n="minutes">Minutos</p>
+        </article>
+        <article class="count-card reveal-item">
+          <p id="seconds" class="count-value">00</p>
+          <p class="count-label" data-i18n="seconds">Segundos</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallerySection" class="section-shell">
+      <div class="section-intro reveal-item">
+        <p class="section-kicker" data-i18n="galleryKicker">Galería</p>
+        <h2 class="section-title" data-i18n="galleryTitle">Nuestra historia en luz</h2>
+      </div>
+      <div id="masonryGallery" class="masonry-gallery"></div>
+    </section>
+
+    <section id="itinerary" class="section-shell">
+      <div class="section-intro reveal-item">
+        <p class="section-kicker" data-i18n="itineraryKicker">Itinerario</p>
+        <h2 class="section-title" data-i18n="itineraryTitle">Un día para recordar</h2>
+      </div>
+      <div id="itineraryCards" class="max-w-5xl mx-auto space-y-5"></div>
+    </section>
+
+    <section id="dressCode" class="section-shell">
+      <div class="section-intro reveal-item">
+        <p class="section-kicker" data-i18n="dressKicker">Código de vestimenta</p>
+        <h2 class="section-title" data-i18n="dressTitle">Elegancia atemporal</h2>
+      </div>
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+        <article class="dress-card reveal-item">
+          <div class="dress-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 3h8l1 4-2 14H9L7 7l1-4Z"></path><path d="M9 11h6"></path></svg>
+          </div>
+          <h3 class="dress-title" data-i18n="men">Hombres</h3>
+          <p class="dress-text" data-i18n="menDress">Traje oscuro o tonos neutros, camisa clara y zapatos formales.</p>
+        </article>
+        <article class="dress-card reveal-item">
+          <div class="dress-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="m12 3 6 5-2 13H8L6 8l6-5Z"></path><path d="m9 10 3 2 3-2"></path></svg>
+          </div>
+          <h3 class="dress-title" data-i18n="women">Mujeres</h3>
+          <p class="dress-text" data-i18n="womenDress">Vestido largo o midi en tonos suaves; accesorios delicados.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="location" class="section-shell">
+      <div class="section-intro reveal-item">
+        <p class="section-kicker" data-i18n="locationKicker">Ubicación</p>
+        <h2 class="section-title" data-i18n="locationTitle">Nos vemos aquí</h2>
+      </div>
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-[1fr_360px] gap-6">
+        <div class="map-frame reveal-item">
+          <iframe
+            title="Wedding location map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Parque%20Fundidora%20Monterrey&output=embed">
+          </iframe>
+        </div>
+        <article class="location-card reveal-item">
+          <p class="location-label" data-i18n="venueLabel">Lugar</p>
+          <h3 class="location-title">Hacienda & Gardens</h3>
+          <p class="location-text">Av. Principal 145, Monterrey, Nuevo León, México</p>
+          <a class="luxury-button inline-flex justify-center mt-8" target="_blank" rel="noopener noreferrer" href="https://maps.google.com/?q=Parque+Fundidora+Monterrey" data-i18n="openMaps">Abrir en Google Maps</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="rsvp" class="section-shell">
+      <div class="section-intro reveal-item">
+        <p class="section-kicker" data-i18n="rsvpKicker">Confirmación</p>
+        <h2 class="section-title" data-i18n="rsvpTitle">Confirma tu asistencia</h2>
+      </div>
+      <article class="max-w-5xl mx-auto form-shell reveal-item">
+        <p class="text-center text-sm uppercase tracking-[0.2em] text-[#7B6A4D] mb-5" data-i18n="rsvpHint">Nombre, acompañantes y mensaje para los novios</p>
+        <iframe
+          id="rsvpFrame"
+          title="Formulario de confirmación"
+          loading="lazy"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSc8rPKyR7C1TAAjcG9NQf6xwA0x4xk9o5YJ8q7X0qS/viewform?embedded=true"></iframe>
+      </article>
+    </section>
+
+    <section id="postWeddingSection" class="section-shell">
+      <div class="section-intro reveal-item">
+        <p class="section-kicker" data-i18n="albumKicker">Álbum posterior</p>
+        <h2 class="section-title" data-i18n="albumTitle">Recuerdos de nuestra celebración</h2>
+      </div>
+      <article id="postWeddingLock" class="max-w-4xl mx-auto lock-shell reveal-item">
+        <p class="font-serif text-3xl mb-2">✦</p>
+        <p class="text-lg md:text-xl" data-i18n="albumLocked">Las fotografías estarán disponibles después de la boda.</p>
+      </article>
+      <div id="postWeddingGallery" class="masonry-gallery hidden"></div>
+    </section>
+  </main>
+
+  <footer class="py-14 text-center border-t border-[#d8c7a4]/40 mt-10">
+    <p class="font-serif text-3xl mb-1">Audel <span class="text-gold">&</span> Luna</p>
+    <p class="text-sm tracking-[0.16em] uppercase" data-i18n="thanks">Gracias por acompañarnos.</p>
+  </footer>
+
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" id="closeLightbox" type="button" aria-label="Close">×</button>
+    <img id="lightboxImage" alt="Wedding photo">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
